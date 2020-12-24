@@ -1,0 +1,19 @@
+<div id="login">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-card>
+      <mat-card-title>Login</mat-card-title>
+      <mat-card-content>
+        <mat-form-field class="row">
+          <input type="text" matInput placeholder="Username" formControlName="username" autocomplete=false>
+        </mat-form-field>
+        <mat-form-field class="row">
+          <input type="password" matInput placeholder="Password" formControlName="password" autocomplete=false>
+        </mat-form-field>
+        <mat-error>{{ error }}</mat-error>
+      </mat-card-content>
+      <mat-card-footer class="footer">
+        <button type="submit" mat-raised-button color="primary">Login</button>
+      </mat-card-footer>
+    </mat-card>
+  </form>
+</div>
