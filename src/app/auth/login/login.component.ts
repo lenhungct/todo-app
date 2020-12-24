@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     if (this.authService.loggedIn()) {
-      this.router.navigate(['/todo-list']);
+      this.router.navigate(['list']);
     }
   }
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   submit() {
     const loginData: Iuser = this.form.value;
     this.authService.login(loginData).subscribe(res => {
-      this.router.navigate(['/todo-list']);
+      this.router.navigate(['/list']);
     }, () => {
       this.error = 'The username or password is incorrect';
     });
