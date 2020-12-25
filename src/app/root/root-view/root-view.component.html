@@ -13,4 +13,12 @@
     </button>
   </span>
 </mat-menu>
-<router-outlet></router-outlet>
+<nav mat-tab-nav-bar>
+  <a mat-tab-link *ngFor="let tab of tabs"
+     (click)="activeLink = tab.link"
+     [active]="activeLink == tab.link"
+     [routerLink]="tab.link"> {{tab.label}} </a>
+</nav>
+<div id="wrapper-content">
+  <router-outlet></router-outlet>
+</div>

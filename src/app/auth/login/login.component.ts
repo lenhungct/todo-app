@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   submit() {
-    const loginData: Iuser = this.form.value;
+    const loginData: IUser = this.form.value;
     this.authService.login(loginData).subscribe(res => {
       this.router.navigate(['/list']);
     }, () => {

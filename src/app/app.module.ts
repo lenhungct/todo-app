@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule, MatMenuModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatIconModule, MatInputModule,
+  MatMenuModule, MatTabsModule, MatToolbarModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,16 +10,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RootViewComponent } from './root/root-view/root-view.component';
-import { ListsTableComponent } from './modules/list/lists-table/lists-table.component';
+import { ListModule } from './modules/list/list.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RootViewComponent,
-    ListsTableComponent
+    RootViewComponent
   ],
   imports: [
+    ListModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -29,7 +30,8 @@ import { ListsTableComponent } from './modules/list/lists-table/lists-table.comp
     MatButtonModule,
     MatMenuModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

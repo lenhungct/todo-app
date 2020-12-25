@@ -14,11 +14,11 @@ export class AuthService {
   apiUrl = environment.apiUrl;
   constructor(private restService: RestService, private shareService: ShareService) { }
 
-  login(auth: Iuser): Observable<any> {
+  login(auth: IUser): Observable<any> {
     const  headers = this.shareService.getBasicHeader(auth);
     return this.restService.post(this.apiUrl + '/auth/login', null, headers)
       .pipe(
-        map((d: IapiKey) => {
+        map((d: IApiKey) => {
           this.shareService.storeAPIKey(d.apiKey);
           return d;
         }, throwError('Could not be authenticated')

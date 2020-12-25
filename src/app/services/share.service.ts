@@ -10,7 +10,7 @@ export class ShareService {
 
   constructor() { }
 
-  getBasicHeader(auth: Iuser): HttpHeaders {
+  getBasicHeader(auth: IUser): HttpHeaders {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: 'Basic ' + btoa(`${auth.username}:${auth.password}`)
