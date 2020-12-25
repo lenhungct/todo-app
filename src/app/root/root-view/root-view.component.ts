@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { TAB_NAV } from 'src/app/types/const';
 
@@ -12,17 +12,14 @@ export class RootViewComponent implements OnInit, OnChanges {
 
   tabs = TAB_NAV;
   activeLink = this.tabs[0].link;
-  // activeLink = '/list';
-  constructor(private auth: AuthService, private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit() {
-    // this.activeLink = this.router.url;
-    console.log('Active route: ', this.activeRoute.url, this.router.url);
+    this.activeLink = this.router.url;
   }
 
   ngOnChanges() {
-    // this.activeLink = this.router.url;
-    console.log('Active route: ', this.activeRoute);
+    this.activeLink = this.router.url;
   }
 
   logout() {

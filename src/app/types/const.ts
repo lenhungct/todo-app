@@ -2,10 +2,10 @@ export const APIKEY = 'apiKey';
 export const TAB_NAV = [
   {
     label: 'Lists',
-    link: '/lists'
+    link: '/list'
   },
   {
     label: 'Tasks',
-    link: '/tasks'
+    link: '/task'
   }
 ];

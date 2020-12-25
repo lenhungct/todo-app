@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RootViewComponent } from './root/root-view/root-view.component';
 import { ListModule } from './modules/list/list.module';
+import { TaskModule } from './modules/task/task.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ListModule } from './modules/list/list.module';
   ],
   imports: [
     ListModule,
+    TaskModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

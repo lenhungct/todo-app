@@ -18,3 +18,25 @@ interface IListDetail {
   items: number;
   actions?: string;
 }
+
+interface INewTask {
+  name: string;
+  completed: boolean;
+}
+
+interface ITask {
+  name: string;
+  completed: boolean;
+  listId: number;
+}
+
+interface ITaskDetail {
+  id: number;
+  name: string;
+  completed: boolean;
+  list_id: number;
+  createAt: string;
+  completeAt: string;
+  actions?: string;
+  listName?: string;
+}

@@ -23,7 +23,7 @@ export class ListsTableComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  constructor(private listService: ListService, public dialog: MatDialog) { }
+  constructor(private listService: ListService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.getLists();
