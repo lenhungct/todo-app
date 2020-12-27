@@ -1,6 +1,6 @@
-<!-- <div class="example-loading" *ngIf="isLoadingResults"> -->
-<!-- <mat-spinner></mat-spinner> -->
-<!-- </div> -->
+<div class="example-loading" *ngIf="isLoadingResults">
+  <mat-spinner></mat-spinner>
+</div>
 <div class="mat-elevation-z8" *ngIf="!isLoadingResults">
   <div class="table-header">
     <button mat-raised-button color="primary" (click)="openActionDialog()">Add Task</button>
@@ -59,14 +59,13 @@
         <button (click)="openDeleteDialog(element)" matTooltip="Delete task">
           <mat-icon>close</mat-icon>
         </button>
-        {{element.actions}}
+        <button (click)="completeTask(element)" matTooltip="Complete task">
+          <mat-icon *ngIf="!element.completed">check</mat-icon>
+        </button>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
-  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25]">
-  </mat-paginator>
 </div>

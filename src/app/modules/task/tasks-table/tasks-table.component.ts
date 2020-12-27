@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatTableDataSource } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 
@@ -14,24 +14,17 @@ import { TaskDeleteComponent } from '../task-delete/task-delete.component';
   templateUrl: './tasks-table.component.html',
   styleUrls: ['./tasks-table.component.scss']
 })
-export class TasksTableComponent implements OnInit, AfterViewInit {
+export class TasksTableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'listName', 'completed', 'createdAt', 'completedAt', 'actions'];
-  dataSource: any;
-  total = 0;
+  dataSource = [];
   lists: IListDetail[] = [];
   selectedList = null;
   isLoadingResults = true;
-
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   constructor(private taskService: TaskService, private listService: ListService,
               private dialog: MatDialog, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.setData();
-  }
-
-  ngAfterViewInit() {
     this.setData();
   }
 
@@ -61,9 +54,7 @@ export class TasksTableComponent implements OnInit, AfterViewInit {
         item.listName = itemList ? itemList.name : '';
         item.actions = '';
       });
-      this.dataSource = new MatTableDataSource<ITaskDetail>(tasks);
-      this.dataSource.paginator = this.paginator;
-      this.total = tasks.length;
+      this.dataSource = tasks;
       this.isLoadingResults = false;
     });
   }
@@ -124,6 +115,16 @@ export class TasksTableComponent implements OnInit, AfterViewInit {
           console.log('Err- Can not delete');
         });
       }
+    });
+  }
+
+  completeTask(taskDetail: ITaskDetail) {
+    taskDetail.listId = taskDetail.list_id;
+    const param: ITask =  { name : taskDetail.name, completed : true, listId: taskDetail.listId };
+    this.taskService.updateById(taskDetail.listId, taskDetail.id, param).subscribe(rs => {
+      this.getData(this.selectedList);
+    }, () => {
+      console.log('Err - can not update data');
     });
   }
 

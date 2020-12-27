@@ -1,7 +1,5 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 import { ListService } from '../services/list.service';
@@ -15,22 +13,15 @@ import { ListDeleteComponent } from '../list-delete/list-delete.component';
   styleUrls: ['./lists-table.component.scss']
 })
 
-export class ListsTableComponent implements OnInit, AfterViewInit {
+export class ListsTableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'items', 'actions'];
   isLoadingResults = true;
-  total = 0;
-  dataSource: MatTableDataSource<IListDetail>;
-
-  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  dataSource = [];
 
   constructor(private listService: ListService, private dialog: MatDialog,
               private router: Router) { }
 
   ngOnInit() {
-    this.getLists();
-  }
-
-  ngAfterViewInit() {
     this.getLists();
   }
 
@@ -40,9 +31,7 @@ export class ListsTableComponent implements OnInit, AfterViewInit {
         item.actions = '';
         item.items = item.tasks;
       });
-      this.dataSource = new MatTableDataSource<IListDetail>(rs);
-      this.dataSource.paginator = this.paginator;
-      this.total = rs.length;
+      this.dataSource = rs;
       this.isLoadingResults = false;
     });
   }
