@@ -4,17 +4,20 @@
     <mat-label>Name</mat-label>
     <input matInput [(ngModel)]="data.name">
   </mat-form-field>
-  <mat-checkbox [(ngModel)]="data.completed">
-    Completed
-  </mat-checkbox>
+
   <mat-form-field>
     <mat-label>List</mat-label>
     <mat-select [(ngModel)]="data.listId">
       <mat-option *ngFor="let list of lists" [value]="list.id">{{ list.name }}</mat-option>
     </mat-select>
   </mat-form-field>
+
+  <mat-checkbox [(ngModel)]="data.completed">
+    Completed
+  </mat-checkbox>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" [disabled]="!data.name">{{ acceptButton }}</button>
+<div mat-dialog-actions align="end">
+  <button mat-raised-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data"
+  [disabled]="!data.name || !data.listId">{{ acceptButton }}</button>
 </div>

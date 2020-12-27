@@ -1,11 +1,13 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
-
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+
+import { ListService } from '../services/list.service';
+
 import { ListActionComponent } from '../list-action/list-action.component';
 import { ListDeleteComponent } from '../list-delete/list-delete.component';
-import { ListService } from '../services/list.service';
 
 @Component({
   selector: 'app-lists-table',
@@ -13,17 +15,16 @@ import { ListService } from '../services/list.service';
   styleUrls: ['./lists-table.component.scss']
 })
 
-export class ListsTableComponent implements AfterViewInit, OnInit {
+export class ListsTableComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'items', 'actions'];
   isLoadingResults = true;
-  data: IListDetail[] = [];
   total = 0;
-  // dataSource: MatTableDataSource<IListDetail>;
-  dataSource: any;
+  dataSource: MatTableDataSource<IListDetail>;
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  constructor(private listService: ListService, private dialog: MatDialog) { }
+  constructor(private listService: ListService, private dialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
     this.getLists();
@@ -37,10 +38,12 @@ export class ListsTableComponent implements AfterViewInit, OnInit {
     this.listService.getLists().subscribe(rs => {
       rs.map((item: IListDetail) => {
         item.actions = '';
+        item.items = item.tasks;
       });
       this.dataSource = new MatTableDataSource<IListDetail>(rs);
       this.dataSource.paginator = this.paginator;
-      this.total = this.dataSource.length;
+      this.total = rs.length;
+      this.isLoadingResults = false;
     });
   }
 
@@ -51,7 +54,7 @@ export class ListsTableComponent implements AfterViewInit, OnInit {
       list.id = listDetail.id;
     }
     const dialogRef = this.dialog.open(ListActionComponent, {
-      width: '250px',
+      panelClass: 'action-dialog',
       data: list,
       disableClose: true
     });
@@ -79,7 +82,7 @@ export class ListsTableComponent implements AfterViewInit, OnInit {
 
   openDeleteDialog(listDetail: IListDetail) {
     const dialogRef = this.dialog.open(ListDeleteComponent, {
-      width: '250px',
+      panelClass: 'delete-dialog',
       data: listDetail,
       disableClose: true
     });
@@ -95,4 +98,7 @@ export class ListsTableComponent implements AfterViewInit, OnInit {
     });
   }
 
+  goToTasks(listId: number) {
+    this.router.navigate(['/task'], { queryParams: { listId } });
+  }
 }

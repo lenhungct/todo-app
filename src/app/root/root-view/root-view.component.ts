@@ -1,5 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { isEmpty } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { TAB_NAV } from 'src/app/types/const';
 
@@ -12,14 +13,23 @@ export class RootViewComponent implements OnInit, OnChanges {
 
   tabs = TAB_NAV;
   activeLink = this.tabs[0].link;
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.activeLink = this.router.url;
+    this.route.queryParams.subscribe(param => {
+      this.setActiveLink();
+    });
   }
 
   ngOnChanges() {
-    this.activeLink = this.router.url;
+    this.setActiveLink();
+  }
+
+  setActiveLink() {
+    if (this.router.url) {
+      const arrParams = this.router.url.split('?');
+      this.activeLink = arrParams[0];
+    }
   }
 
   logout() {

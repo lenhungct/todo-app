@@ -5,6 +5,7 @@ import { ListsTableComponent } from './lists-table/lists-table.component';
 import { ListActionComponent } from './list-action/list-action.component';
 import { FormsModule } from '@angular/forms';
 import { ListDeleteComponent } from './list-delete/list-delete.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { ListDeleteComponent } from './list-delete/list-delete.component';
     ListDeleteComponent
   ],
   imports: [
+    BrowserModule,
     MatTableModule,
     MatPaginatorModule,
     MatInputModule,

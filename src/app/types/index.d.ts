@@ -16,6 +16,7 @@ interface IListDetail {
   id: number;
   name: string;
   items: number;
+  tasks?: number;
   actions?: string;
 }
 
@@ -34,9 +35,10 @@ interface ITaskDetail {
   id: number;
   name: string;
   completed: boolean;
-  list_id: number;
-  createAt: string;
-  completeAt: string;
+  listId?: number;
+  createdAt: string;
+  completedAt?: string;
   actions?: string;
   listName?: string;
+  list_id?: number;
 }
