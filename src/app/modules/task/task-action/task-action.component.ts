@@ -1,4 +1,3 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -15,6 +14,7 @@ export class TaskActionComponent implements OnInit {
   title = 'Add new task';
   data: ITaskDetail;
   lists: IListDetail[] = [];
+
   constructor(private dialogRef: MatDialogRef<ListActionComponent>, @Inject(MAT_DIALOG_DATA) public actionData: any) {
     this.data = this.actionData.data;
     this.lists = this.actionData.lists;

@@ -18,8 +18,7 @@ export class ListsTableComponent implements OnInit {
   isLoadingResults = true;
   dataSource = [];
 
-  constructor(private listService: ListService, private dialog: MatDialog,
-              private router: Router) { }
+  constructor(private listService: ListService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     this.getLists();

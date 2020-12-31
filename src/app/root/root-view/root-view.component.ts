@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { isEmpty } from 'rxjs/operators';
+
 import { AuthService } from 'src/app/auth/auth.service';
 import { TAB_NAV } from 'src/app/types/const';
 
@@ -10,7 +10,6 @@ import { TAB_NAV } from 'src/app/types/const';
   styleUrls: ['./root-view.component.scss']
 })
 export class RootViewComponent implements OnInit, OnChanges {
-
   tabs = TAB_NAV;
   activeLink = this.tabs[0].link;
   constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) { }

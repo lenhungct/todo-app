@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TasksTableComponent } from './tasks-table/tasks-table.component';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule, MatPaginatorModule, MatInputModule, MatDialogModule,
-  MatButtonModule, MatIconModule, MatTooltipModule, MatCheckboxModule, MatSelectModule, MatProgressSpinnerModule } from '@angular/material';
+  MatButtonModule, MatIconModule, MatTooltipModule, MatCheckboxModule,
+  MatSelectModule, MatProgressSpinnerModule
+} from '@angular/material';
+
+import { TasksTableComponent } from './tasks-table/tasks-table.component';
 import { TaskActionComponent } from './task-action/task-action.component';
 import { TaskDeleteComponent } from './task-delete/task-delete.component';
 

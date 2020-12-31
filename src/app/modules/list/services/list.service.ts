@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,6 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ListService {
   apiUrl = environment.apiUrl;
+
   constructor(private restService: RestService) { }
 
   getLists(): Observable<IListDetail[]> {

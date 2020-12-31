@@ -5,7 +5,6 @@ import { forkJoin } from 'rxjs';
 
 import { ListService } from '../../list/services/list.service';
 import { TaskService } from '../services/task.service';
-
 import { TaskActionComponent } from '../task-action/task-action.component';
 import { TaskDeleteComponent } from '../task-delete/task-delete.component';
 

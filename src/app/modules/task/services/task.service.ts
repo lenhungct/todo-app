@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TaskService {
-
   apiUrl = environment.apiUrl;
 
   constructor(private restService: RestService) { }

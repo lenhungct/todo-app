@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ListActionComponent implements OnInit {
   acceptButton = 'Create';
   title = 'Add new list';
+
   constructor(private dialogRef: MatDialogRef<ListActionComponent>, @Inject(MAT_DIALOG_DATA) public data: IList) { }
 
   ngOnInit() {

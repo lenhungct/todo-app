@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { ShareService } from './share.service';
 
 @Injectable({
@@ -9,26 +10,24 @@ export class RestService {
 
   constructor(private http: HttpClient, private shareService: ShareService) { }
 
+  header(): HttpHeaders {
+    return this.shareService.getBearerHeader();
+  }
+
   get(url: string) {
-    const header = this.shareService.getBearerHeader();
-    return this.http.get(url, { headers: header });
+    return this.http.get(url, { headers: this.header() });
   }
 
   post(url: string, params: any, headerCustom?: HttpHeaders) {
-    let header = this.shareService.getBearerHeader();
-    if (headerCustom) {
-      header = headerCustom;
-    }
+    const header =  (headerCustom) ? headerCustom : this.header();
     return this.http.post(url, params, { headers: header });
   }
 
   put(url: string, params: any) {
-    const header = this.shareService.getBearerHeader();
-    return this.http.put(url, params, { headers: header });
+    return this.http.put(url, params, { headers: this.header() });
   }
 
   delete(url: string) {
-    const header = this.shareService.getBearerHeader();
-    return this.http.delete(url, { headers: header });
+    return this.http.delete(url, { headers: this.header() });
   }
 }
